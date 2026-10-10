@@ -1,0 +1,653 @@
+{
+  "registrations": [],
+  "videoSubmissions": [],
+  "auditLogs": [],
+  "heroContent": {
+    "eyebrow": "Namma Angadi Presents",
+    "title": "DRISHTI 2K26",
+    "subtitle": "Kaduru Dasara Reel Making Competition",
+    "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+    "datesText": "11 October 2026 – 20 October 2026",
+    "startDate": "2026-10-11T00:00:00+05:30",
+    "endDate": "2026-10-20T23:59:59+05:30",
+    "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+    "primaryCtaText": "Register Free",
+    "primaryCtaLink": "/register",
+    "secondaryCtaText": "Explore Prizes",
+    "secondaryCtaLink": "/prizes",
+    "showCountdown": true,
+    "showPrizesBadge": true
+  },
+  "siteSettings": {
+    "eventName": "DRISHTI 2K26",
+    "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+    "contestDates": "11 October 2026 – 20 October 2026",
+    "registrationFee": "FREE",
+    "participationType": "Individual only",
+    "organizerName": "Sri Durga Seva Samithi, Kadur",
+    "organizerLocation": "Kadur, Chikkamagaluru District, Karnataka",
+    "officialInstagramUrl": "https://www.instagram.com/sri_durga_seva_samithi_kadur?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==",
+    "officialHashtag": "#Drishti2K26 #KaduruDasara #SriDurgaSevaSamithi",
+    "registrationsOpen": true,
+    "submissionsOpen": true,
+    "registrationDeadline": "2026-10-20T23:59:59+05:30",
+    "announcementBanner": {
+      "enabled": true,
+      "text": "🎉 Registrations are now LIVE for DRISHTI 2K26! Free entry with exciting prizes sponsored by Namma Angadi, Laxmi Traders & DK Mobiles.",
+      "link": "/register"
+    },
+    "maintenanceMode": false,
+    "seoTitle": "DRISHTI 2K26 | Kaduru Dasara Reel Making Competition",
+    "seoDescription": "Join DRISHTI 2K26 by Sri Durga Seva Samithi, Kadur. Register free, share your Main Story Reel & Durgi Reel, and win a Smartphone, DJI Gimbal & Party Speaker.",
+    "ogImageUrl": "/images/durgi/durgi-portrait-hd.jpg"
+  },
+  "sponsors": [
+    {
+      "id": "sp-namma-angadi",
+      "name": "Namma Angadi",
+      "tier": "title",
+      "prizeTitle": "First Prize: 5G Smartphone",
+      "businessCategory": "Home Appliances & Electronics Superstore",
+      "tagline": "Kadur's Most Trusted Destination for Quality Home Appliances",
+      "promotionalPoints": [
+        "Complete range of Refrigerators, Washing Machines, Smart TVs, Coolers & Kitchen Appliances",
+        "Exciting festive discount offers, easy EMI finance options & quick doorstep delivery in Kadur",
+        "100% genuine brand warranty with dependable after-sales service and customer support"
+      ],
+      "mapUrl": "https://www.google.com/maps/place/Namma+Angadi+M+S+A/@13.5482674,76.0124145,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaeb182dcf4a83:0x9c2584dfec8f80ce!8m2!3d13.5482674!4d76.0149894!16s%2Fg%2F11yl92456h?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "address": "Namma Angadi M S A, Kadur, Karnataka",
+      "logoUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "",
+      "displayOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": "sp-laxmi-traders",
+      "name": "Laxmi Traders",
+      "tier": "associate",
+      "prizeTitle": "Second Prize: DJI 3-Axis Gimbal Stabilizer",
+      "businessCategory": "Authorized Paint Dealers & Decorative Coatings",
+      "tagline": "Kadur's Most Trusted Paint Dealers & Surface Coating Experts",
+      "promotionalPoints": [
+        "Authorized dealers for Asian Paints, Berger & world-class decorative coatings",
+        "Computerized color tinting machine, waterproof wall sealants & complete painter equipment",
+        "Expert color selection guidance for residences, commercial buildings & festive celebrations"
+      ],
+      "mapUrl": "https://www.google.com/maps/place/Laxmi+Traders/@13.5522433,76.0089324,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaea373f6ebd6b:0x6948fc1b7f06a062!8m2!3d13.5522433!4d76.0115073!16s%2Fg%2F11gdyfhk32?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "address": "Laxmi Traders, Main Road, Kadur, Karnataka",
+      "logoUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "",
+      "displayOrder": 2,
+      "isActive": true
+    },
+    {
+      "id": "sp-dk-mobiles",
+      "name": "DK Mobiles",
+      "tier": "associate",
+      "prizeTitle": "Third Prize: High-Power RGB Party Speaker",
+      "businessCategory": "Multi-Brand Mobile & Audio Accessories Junction",
+      "tagline": "Kadur's Favorite Hub for Latest Smartphones & Sound Systems",
+      "promotionalPoints": [
+        "Latest 5G smartphones from top global brands with instant upgrade and exchange deals",
+        "High-output Bluetooth party speakers, wireless earbuds, smartwatches & premium accessories",
+        "Fast smartphone servicing, display replacement & convenient 0% interest EMI options"
+      ],
+      "mapUrl": "https://www.google.com/maps/place/D+K+MOBILE+JUNCTION/@13.5523582,76.0081331,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaeb8dfe16d689:0xf0a98c33785cecb9!8m2!3d13.5523582!4d76.010708!16s%2Fg%2F11z5rcmwbz?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "address": "D K Mobile Junction, Kadur, Karnataka",
+      "logoUrl": "",
+      "websiteUrl": "",
+      "instagramUrl": "",
+      "displayOrder": 3,
+      "isActive": true
+    }
+  ],
+  "prizes": [
+    {
+      "id": "prz-1",
+      "rank": 1,
+      "title": "FIRST PRIZE",
+      "itemName": "5G Smartphone",
+      "description": "Segment's smoothest 5G smartphone featuring high refresh rate display, up to 26 hours video playback, advanced AI camera, and top security updates — built for elite video creators.",
+      "features": [
+        "High Refresh Rate AMOLED Screen",
+        "Up to 26 Hours Video Playback",
+        "AI-Powered Cinematic Camera",
+        "Fast 5G Connectivity for Instant Uploads"
+      ],
+      "imageUrl": "/images/prizes/first-prize-smartphone.jpg",
+      "sponsorId": "sp-namma-angadi",
+      "sponsorName": "Namma Angadi",
+      "sponsorCategory": "Home Appliances & Electronics Store",
+      "sponsorMapUrl": "https://www.google.com/maps/place/Namma+Angadi+M+S+A/@13.5482674,76.0124145,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaeb182dcf4a83:0x9c2584dfec8f80ce!8m2!3d13.5482674!4d76.0149894!16s%2Fg%2F11yl92456h?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "displayOrder": 1,
+      "isAnnounced": true
+    },
+    {
+      "id": "prz-2",
+      "rank": 2,
+      "title": "SECOND PRIZE",
+      "itemName": "DJI 3-Axis Smartphone Gimbal",
+      "description": "Professional handheld smartphone gimbal stabilizer with magnetic quick-release clamp, built-in tripod, active smart-tracking, and cinematic panning controls.",
+      "features": [
+        "Ultra-Smooth 3-Axis Stabilization",
+        "Smart Active Subject Tracking",
+        "Magnetic Quick-Release Phone Clamp",
+        "Foldable Portable Design with Tripod Grip"
+      ],
+      "imageUrl": "/images/prizes/second-prize-gimbal.jpg",
+      "sponsorId": "sp-laxmi-traders",
+      "sponsorName": "Laxmi Traders",
+      "sponsorCategory": "Authorized Paint Dealers",
+      "sponsorMapUrl": "https://www.google.com/maps/place/Laxmi+Traders/@13.5522433,76.0089324,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaea373f6ebd6b:0x6948fc1b7f06a062!8m2!3d13.5522433!4d76.0115073!16s%2Fg%2F11gdyfhk32?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "displayOrder": 2,
+      "isAnnounced": true
+    },
+    {
+      "id": "prz-3",
+      "rank": 3,
+      "title": "THIRD PRIZE",
+      "itemName": "High-Power RGB Party Speaker",
+      "description": "Thunderous sound system featuring dual wireless karaoke microphones, vibrant dynamic pulsing RGB lights, heavy bass boost, and multi-hour rechargeable battery life.",
+      "features": [
+        "Deep Bass & High-Decibel Output",
+        "Dynamic Multi-Color RGB Party Lights",
+        "Includes 2 Wireless Karaoke Microphones",
+        "Bluetooth, USB, AUX & Remote Control"
+      ],
+      "imageUrl": "/images/prizes/third-prize-speaker.jpg",
+      "sponsorId": "sp-dk-mobiles",
+      "sponsorName": "DK Mobiles",
+      "sponsorCategory": "Mobile & Audio Junction",
+      "sponsorMapUrl": "https://www.google.com/maps/place/D+K+MOBILE+JUNCTION/@13.5523582,76.0081331,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbaeb8dfe16d689:0xf0a98c33785cecb9!8m2!3d13.5523582!4d76.010708!16s%2Fg%2F11z5rcmwbz?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",
+      "displayOrder": 3,
+      "isAnnounced": true
+    }
+  ],
+  "coordinators": [
+    {
+      "id": "coord-1",
+      "name": "Gagan",
+      "role": "Event Coordinator",
+      "phone": "6362320465",
+      "whatsappUrl": "https://wa.me/916362320465?text=Hi%20Gagan,%20I%20have%20a%20query%20about%20DRISHTI%202K26",
+      "instagramUrl": "https://www.instagram.com/sri_durga_seva_samithi_kadur",
+      "imageUrl": "/images/durgi/durgi-portrait-crown.jpg",
+      "displayOrder": 1,
+      "isActive": true
+    },
+    {
+      "id": "coord-2",
+      "name": "Tarun K",
+      "role": "Event Coordinator",
+      "phone": "9353903861",
+      "whatsappUrl": "https://wa.me/919353903861?text=Hi%20Tarun,%20I%20have%20a%20query%20about%20DRISHTI%202K26",
+      "instagramUrl": "https://www.instagram.com/sri_durga_seva_samithi_kadur",
+      "imageUrl": "/images/durgi/durgi-abhaya-close.jpg",
+      "displayOrder": 2,
+      "isActive": true
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gal-1",
+      "title": "Sri Durga Devi — Kaduru Dasara",
+      "caption": "The majestic golden idol adorned with traditional garlands and crown.",
+      "altText": "Sri Durga Devi idol full standing posture with lion and trishul",
+      "imageUrl": "/images/durgi/durgi-full-standing.jpg",
+      "category": "Idol & Rituals",
+      "displayOrder": 1,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "gal-2",
+      "title": "Divine Abhaya Hasta with Om",
+      "caption": "Blessings of Sri Durga with auspicious Om symbol on the sacred hand.",
+      "altText": "Abhaya Mudra hand with sacred Om symbol and jewellery",
+      "imageUrl": "/images/durgi/durgi-abhaya-mudra.jpg",
+      "category": "Divine Close-ups",
+      "displayOrder": 2,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "gal-3",
+      "title": "The Golden Trishul & Divine Radiance",
+      "caption": "Sri Durga with the golden trident amidst festival floral background.",
+      "altText": "Sri Durga Devi with Trishul",
+      "imageUrl": "/images/durgi/durgi-mid-trishul.jpg",
+      "category": "Festival Moments",
+      "displayOrder": 3,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "gal-4",
+      "title": "Devi Mukha Darshana",
+      "caption": "The serene and compassionate divine face of Kaduru Durgi.",
+      "altText": "Close up portrait of Sri Durga face with traditional jewellery",
+      "imageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+      "category": "Divine Close-ups",
+      "displayOrder": 4,
+      "isFeatured": true,
+      "isActive": true
+    },
+    {
+      "id": "gal-5",
+      "title": "Traditional Alankara & Jewellery",
+      "caption": "Exquisite necklaces, velvet headwear, and floral veni of Sri Durga.",
+      "altText": "Sri Durga jewellery and garland details",
+      "imageUrl": "/images/durgi/durgi-portrait-crown.jpg",
+      "category": "Alankara",
+      "displayOrder": 5,
+      "isFeatured": false,
+      "isActive": true
+    },
+    {
+      "id": "gal-6",
+      "title": "Sacred Festival Evening Darshana",
+      "caption": "Atmosphere of devotion, music, and celebration at Kaduru Dasara.",
+      "altText": "Kaduru Dasara evening darshana view",
+      "imageUrl": "/images/durgi/durgi-portrait-soft.jpg",
+      "category": "Festival Moments",
+      "displayOrder": 6,
+      "isFeatured": false,
+      "isActive": true
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "Is there any registration fee for DRISHTI 2K26?",
+      "answer": "No, registration is completely FREE. Anyone with passion for reel-making and storytelling can participate.",
+      "category": "General",
+      "displayOrder": 1,
+      "isPublished": true
+    },
+    {
+      "id": "faq-2",
+      "question": "What are the two mandatory reel categories?",
+      "answer": "Participants must submit two separate Instagram Reel links: 1) MAIN STORY REEL — an original story connected to Durgi, Navaratri, Kaduru Dasara, local traditions, devotion, or festival emotions; 2) DURGI REEL — a creative reel showcasing Durgi and the festive atmosphere.",
+      "category": "Submissions",
+      "displayOrder": 2,
+      "isPublished": true
+    },
+    {
+      "id": "faq-3",
+      "question": "Can I participate as a team or group?",
+      "answer": "Participation is strictly INDIVIDUAL. Each registration is for one person, and unique registration ID will be issued.",
+      "category": "Eligibility",
+      "displayOrder": 3,
+      "isPublished": true
+    },
+    {
+      "id": "faq-4",
+      "question": "Is there a duration limit for the reels?",
+      "answer": "There is no fixed video duration limit. Focus on storytelling, cinematic quality, rhythm, and festival essence.",
+      "category": "Rules",
+      "displayOrder": 4,
+      "isPublished": true
+    },
+    {
+      "id": "faq-5",
+      "question": "Are AI-generated audio and visual elements allowed?",
+      "answer": "AI-generated audio and visual enhancement elements are permitted, but Durgi's actual idol appearance, face, jewellery, and identity must NEVER be altered or replaced with AI avatars.",
+      "category": "Rules",
+      "displayOrder": 5,
+      "isPublished": true
+    },
+    {
+      "id": "faq-6",
+      "question": "How do I submit my Instagram Reel links?",
+      "answer": "After completing your free registration, you will receive a unique Registration ID (DR26-XXXXXX) and a secure Submission Access Link. You can submit one video first and update the second video anytime before the deadline (20 October 2026).",
+      "category": "Submissions",
+      "displayOrder": 6,
+      "isPublished": true
+    },
+    {
+      "id": "faq-7",
+      "question": "Can I use mobile phones or do I need DSLR cameras?",
+      "answer": "Mobile phones, DSLRs, mirrorless cameras, and action cameras are all welcome! Creativity and devotion matter most.",
+      "category": "Technical",
+      "displayOrder": 7,
+      "isPublished": true
+    },
+    {
+      "id": "faq-8",
+      "question": "Who should I contact if I have questions?",
+      "answer": "You can reach out to our coordinators: Gagan (+91 6362320465) or Tarun K (+91 9353903861) via WhatsApp or phone call.",
+      "category": "Contact",
+      "displayOrder": 8,
+      "isPublished": true
+    }
+  ],
+  "mediaAssets": [
+    {
+      "id": "media-1791604488826",
+      "filename": "Google_AI_Studio_2025-10-20T03_46_19.668Z.png",
+      "filePath": "/uploads/1791604488824_Google_AI_Studio_2025-10-20T03_46_19.668Z.png",
+      "fileSize": 1077106,
+      "mimeType": "image/png",
+      "altText": "",
+      "caption": "",
+      "createdAt": "2026-10-10T03:54:48.826Z"
+    },
+    {
+      "id": "med-1",
+      "filename": "durgi-hero.jpg",
+      "filePath": "/images/durgi/durgi-hero.jpg",
+      "fileSize": 179384,
+      "mimeType": "image/jpeg",
+      "altText": "Sri Durga Devi Kaduru Dasara Hero Portrait",
+      "caption": "Kaduru Dasara divine portrait of Durgi",
+      "createdAt": "2026-10-10T03:46:29.902Z"
+    },
+    {
+      "id": "med-2",
+      "filename": "durgi-full-standing.jpg",
+      "filePath": "/images/durgi/durgi-full-standing.jpg",
+      "fileSize": 181510,
+      "mimeType": "image/jpeg",
+      "altText": "Full standing idol with lion and trishul",
+      "caption": "Complete view of Sri Durga idol on Simha vahana",
+      "createdAt": "2026-10-10T03:46:29.903Z"
+    },
+    {
+      "id": "med-3",
+      "filename": "durgi-abhaya-mudra.jpg",
+      "filePath": "/images/durgi/durgi-abhaya-mudra.jpg",
+      "fileSize": 161011,
+      "mimeType": "image/jpeg",
+      "altText": "Abhaya Hasta showing sacred Om",
+      "caption": "Divine blessing hand of Devi with Om",
+      "createdAt": "2026-10-10T03:46:29.903Z"
+    }
+  ],
+  "revisions": [
+    {
+      "id": "rev-1791606449692",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:27:29.692Z",
+      "updatedAt": "2026-10-10T04:27:29.692Z"
+    },
+    {
+      "id": "rev-1791606449688",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:27:29.688Z",
+      "updatedAt": "2026-10-10T04:27:29.688Z"
+    },
+    {
+      "id": "rev-1791605732010",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:15:32.010Z",
+      "updatedAt": "2026-10-10T04:15:32.010Z"
+    },
+    {
+      "id": "rev-1791605732004",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:15:32.004Z",
+      "updatedAt": "2026-10-10T04:15:32.004Z"
+    },
+    {
+      "id": "rev-1791605230294",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:07:10.294Z",
+      "updatedAt": "2026-10-10T04:07:10.294Z"
+    },
+    {
+      "id": "rev-1791605230289",
+      "sectionKey": "hero",
+      "draftData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "publishedData": {
+        "eyebrow": "Namma Angadi Presents",
+        "title": "DRISHTI 2K26 TEST DRAFT",
+        "subtitle": "Kaduru Dasara Reel Making Competition",
+        "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+        "datesText": "11 October 2026 – 20 October 2026",
+        "startDate": "2026-10-11T00:00:00+05:30",
+        "endDate": "2026-10-20T23:59:59+05:30",
+        "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+        "primaryCtaText": "Register Free",
+        "primaryCtaLink": "/register",
+        "secondaryCtaText": "Explore Prizes",
+        "secondaryCtaLink": "/prizes",
+        "showCountdown": true,
+        "showPrizesBadge": true
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T04:07:10.289Z",
+      "updatedAt": "2026-10-10T04:07:10.289Z"
+    },
+    {
+      "id": "rev-init",
+      "sectionKey": "all",
+      "draftData": {},
+      "publishedData": {
+        "hero": {
+          "eyebrow": "Namma Angadi Presents",
+          "title": "DRISHTI 2K26",
+          "subtitle": "Kaduru Dasara Reel Making Competition",
+          "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+          "datesText": "11 October 2026 – 20 October 2026",
+          "startDate": "2026-10-11T00:00:00+05:30",
+          "endDate": "2026-10-20T23:59:59+05:30",
+          "heroImageUrl": "/images/durgi/durgi-portrait-hd.jpg",
+          "primaryCtaText": "Register Free",
+          "primaryCtaLink": "/register",
+          "secondaryCtaText": "Explore Prizes",
+          "secondaryCtaLink": "/prizes",
+          "showCountdown": true,
+          "showPrizesBadge": true
+        },
+        "settings": {
+          "eventName": "DRISHTI 2K26",
+          "tagline": "One Celebration… Many Stories… Memories That Last Forever!",
+          "contestDates": "11 October 2026 – 20 October 2026",
+          "registrationFee": "FREE",
+          "participationType": "Individual only",
+          "organizerName": "Sri Durga Seva Samithi, Kadur",
+          "organizerLocation": "Kadur, Chikkamagaluru District, Karnataka",
+          "officialInstagramUrl": "https://www.instagram.com/sri_durga_seva_samithi_kadur?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==",
+          "officialHashtag": "#Drishti2K26 #KaduruDasara #SriDurgaSevaSamithi",
+          "registrationsOpen": true,
+          "submissionsOpen": true,
+          "registrationDeadline": "2026-10-20T23:59:59+05:30",
+          "announcementBanner": {
+            "enabled": true,
+            "text": "🎉 Registrations are now LIVE for DRISHTI 2K26! Free entry with exciting prizes sponsored by Namma Angadi, Laxmi Traders & DK Mobiles.",
+            "link": "/register"
+          },
+          "maintenanceMode": false,
+          "seoTitle": "DRISHTI 2K26 | Kaduru Dasara Reel Making Competition",
+          "seoDescription": "Join DRISHTI 2K26 by Sri Durga Seva Samithi, Kadur. Register free, share your Main Story Reel & Durgi Reel, and win a Smartphone, DJI Gimbal & Party Speaker.",
+          "ogImageUrl": "/images/durgi/durgi-portrait-hd.jpg"
+        }
+      },
+      "status": "published",
+      "publishedAt": "2026-10-10T03:46:29.903Z",
+      "updatedAt": "2026-10-10T03:46:29.903Z"
+    }
+  ]
+}

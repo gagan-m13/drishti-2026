@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.env*.local
+.env
+*.log
+.vercel
+.DS_Store
+Thumbs.db
+WhatsApp Image*.jpeg
+ghimbal.jpg
+mobile.jpg
+speakers.jpg

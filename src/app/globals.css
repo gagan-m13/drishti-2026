@@ -1,0 +1,84 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #080B11;
+  --foreground: #F3F4F6;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+.font-festive {
+  font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+}
+
+/* Custom Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF0B8 0%, #D4AF37 50%, #AA820A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-bright {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F7E7A9 40%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-crimson-gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #E63946 50%, #9B111E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gold Borders */
+.border-gold-subtle {
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.border-gold-glow {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080B11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252E42;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
