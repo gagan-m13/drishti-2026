@@ -41,7 +41,25 @@ interface DatabaseSchema {
   revisions: ContentRevision[];
 }
 
-const DB_PATH = path.join(process.cwd(), 'data', 'db.json');
+function getDbPath(): string {
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    const tmpPath = path.join('/tmp', 'durgi_db.json');
+    if (!fs.existsSync(tmpPath)) {
+      try {
+        const rootPath = path.join(process.cwd(), 'data', 'db.json');
+        if (fs.existsSync(rootPath)) {
+          fs.copyFileSync(rootPath, tmpPath);
+        } else {
+          fs.writeFileSync(tmpPath, JSON.stringify(getDefaultDb(), null, 2), 'utf-8');
+        }
+      } catch (e) {
+        console.error('Error seeding /tmp/durgi_db.json:', e);
+      }
+    }
+    return tmpPath;
+  }
+  return path.join(process.cwd(), 'data', 'db.json');
+}
 
 function getDefaultDb(): DatabaseSchema {
   return {
@@ -104,16 +122,19 @@ function getDefaultDb(): DatabaseSchema {
 
 function readDb(): DatabaseSchema {
   try {
-    const dataDir = path.dirname(DB_PATH);
+    const dbPath = getDbPath();
+    const dataDir = path.dirname(dbPath);
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
-    if (!fs.existsSync(DB_PATH)) {
+    if (!fs.existsSync(dbPath)) {
       const defaultDb = getDefaultDb();
-      fs.writeFileSync(DB_PATH, JSON.stringify(defaultDb, null, 2), 'utf-8');
+      try {
+        fs.writeFileSync(dbPath, JSON.stringify(defaultDb, null, 2), 'utf-8');
+      } catch (e) {}
       return defaultDb;
     }
-    const raw = fs.readFileSync(DB_PATH, 'utf-8');
+    const raw = fs.readFileSync(dbPath, 'utf-8');
     const parsed = JSON.parse(raw);
     return {
       ...getDefaultDb(),
@@ -127,11 +148,12 @@ function readDb(): DatabaseSchema {
 
 function writeDb(db: DatabaseSchema): void {
   try {
-    const dataDir = path.dirname(DB_PATH);
+    const dbPath = getDbPath();
+    const dataDir = path.dirname(dbPath);
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
-    fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf-8');
   } catch (err) {
     console.error('Error writing local db:', err);
   }
@@ -139,12 +161,9 @@ function writeDb(db: DatabaseSchema): void {
 
 // Normalizer utility functions
 export function normalizePhoneNumber(phone: string): string {
-  const digits = phone.replace(/\D/g, '');
-  if (digits.length === 12 && digits.startsWith('91')) {
-    return digits.slice(2);
-  }
-  if (digits.length === 11 && digits.startsWith('0')) {
-    return digits.slice(1);
+  const digits = (phone || '').replace(/\D/g, '');
+  if (digits.length >= 10) {
+    return digits.slice(-10);
   }
   return digits;
 }
@@ -286,13 +305,17 @@ export async function getRegistrationById(id: string): Promise<Registration | nu
 export async function verifyParticipantAccess(code: string, phone: string): Promise<{ success: boolean; token?: string; error?: string }> {
   const db = readDb();
   const normalizedPhone = normalizePhoneNumber(phone);
+  const cleanCode = (code || '').trim().toUpperCase();
   const reg = db.registrations.find(
-    r => r.registrationCode.toUpperCase() === code.trim().toUpperCase() && 
-         r.normalizedPhone === normalizedPhone
+    r => r.registrationCode.toUpperCase() === cleanCode && 
+         (r.normalizedPhone === normalizedPhone || r.normalizedPhone.endsWith(normalizedPhone))
   );
 
   if (!reg) {
-    return { success: false, error: 'Registration ID and Mobile number do not match. Please verify and try again.' };
+    return { 
+      success: false, 
+      error: 'Registration ID and Mobile number do not match. Please ensure you have registered first at /register.' 
+    };
   }
 
   return { success: true, token: reg.accessToken };

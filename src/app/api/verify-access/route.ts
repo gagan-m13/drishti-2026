@@ -5,7 +5,7 @@ import { checkRateLimit } from '@/lib/rate-limit';
 
 const verifySchema = z.object({
   registrationCode: z.string().min(4, 'Registration ID is required'),
-  phone: z.string().min(10, 'Mobile number is required'),
+  phone: z.string().refine(val => (val || '').replace(/\D/g, '').length >= 10, 'Please enter a valid 10-digit mobile number'),
 });
 
 export async function POST(req: NextRequest) {
