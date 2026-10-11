@@ -4,14 +4,20 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
-export const isSupabaseConfigured = Boolean(supabaseUrl && (supabaseAnonKey || supabaseServiceKey));
+export const isSupabaseConfigured = Boolean(
+  supabaseUrl && 
+  (supabaseAnonKey || supabaseServiceKey) && 
+  !supabaseUrl.includes('your-project')
+);
+
+const effectiveKey = supabaseServiceKey || supabaseAnonKey;
 
 export const supabase = isSupabaseConfigured && supabaseAnonKey
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
-export const supabaseAdmin = isSupabaseConfigured && supabaseServiceKey
-  ? createClient(supabaseUrl, supabaseServiceKey, {
+export const supabaseAdmin = isSupabaseConfigured && effectiveKey
+  ? createClient(supabaseUrl, effectiveKey, {
       auth: {
         autoRefreshToken: false,
         persistSession: false

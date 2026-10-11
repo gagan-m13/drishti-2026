@@ -24,6 +24,7 @@ import {
   initialGallery, 
   initialFaqs 
 } from './initial-data';
+import { isSupabaseConfigured, supabaseAdmin } from './supabase';
 
 interface DatabaseSchema {
   registrations: Registration[];
@@ -191,6 +192,41 @@ export function normalizeInstagramReelUrl(url: string): string {
   }
 }
 
+// Mapping utilities between PostgreSQL snake_case and TypeScript camelCase
+function mapDbRegToModel(row: any): Registration {
+  return {
+    id: row.id,
+    registrationCode: row.registration_code,
+    fullName: row.full_name,
+    normalizedPhone: row.normalized_phone,
+    email: row.email,
+    city: row.city,
+    instagramUsername: row.instagram_username,
+    college: row.college || undefined,
+    ageRange: row.age_range || undefined,
+    accessToken: row.access_token,
+    consentTimestamp: row.consent_timestamp || row.created_at || new Date().toISOString(),
+    createdAt: row.created_at || new Date().toISOString(),
+    updatedAt: row.updated_at || new Date().toISOString(),
+    submissions: []
+  };
+}
+
+function mapDbSubToModel(row: any): VideoSubmission {
+  return {
+    id: row.id,
+    registrationId: row.registration_id,
+    videoType: row.video_type,
+    submittedUrl: row.submitted_url,
+    normalizedUrl: row.normalized_url,
+    status: row.status,
+    reviewNotes: row.review_notes || undefined,
+    reviewedBy: row.reviewed_by || undefined,
+    submittedAt: row.submitted_at || row.created_at || new Date().toISOString(),
+    updatedAt: row.updated_at || new Date().toISOString()
+  };
+}
+
 // Registration functions
 export async function createRegistration(data: {
   fullName: string;
@@ -201,7 +237,6 @@ export async function createRegistration(data: {
   college?: string;
   ageRange?: string;
 }): Promise<{ success: boolean; error?: string; registration?: Registration }> {
-  const db = readDb();
   const normalizedPhone = normalizePhoneNumber(data.phone);
   const normalizedInsta = normalizeInstagram(data.instagramUsername);
 
@@ -212,12 +247,86 @@ export async function createRegistration(data: {
     return { success: false, error: 'Please provide a valid Instagram username.' };
   }
 
-  // Check duplicate phone or instagram
+  // --- SUPABASE CLOUD POSTGRESQL PATH (Production Vercel) ---
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: existingByPhone } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .eq('normalized_phone', normalizedPhone)
+        .maybeSingle();
+
+      if (existingByPhone) {
+        const reg = mapDbRegToModel(existingByPhone);
+        return { 
+          success: false, 
+          error: `A participant is already registered with mobile number ending in ...${normalizedPhone.slice(-4)}. Registration ID: ${reg.registrationCode}`,
+          registration: reg
+        };
+      }
+
+      const { data: existingByInsta } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .ilike('instagram_username', normalizedInsta)
+        .maybeSingle();
+
+      if (existingByInsta) {
+        const reg = mapDbRegToModel(existingByInsta);
+        return { 
+          success: false, 
+          error: `An entry for Instagram @${normalizedInsta} already exists with Registration ID: ${reg.registrationCode}`,
+          registration: reg
+        };
+      }
+
+      const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+      const registrationCode = `DR26-${randomSuffix}`;
+      const accessToken = `tok_${Math.random().toString(36).substring(2, 15)}_${Date.now()}`;
+      const now = new Date().toISOString();
+
+      const { data: inserted, error: insertError } = await supabaseAdmin
+        .from('registrations')
+        .insert({
+          registration_code: registrationCode,
+          full_name: data.fullName.trim(),
+          normalized_phone: normalizedPhone,
+          email: data.email.trim().toLowerCase(),
+          city: data.city.trim(),
+          instagram_username: normalizedInsta,
+          college: data.college?.trim() || null,
+          age_range: data.ageRange?.trim() || null,
+          access_token: accessToken,
+          consent_timestamp: now,
+          created_at: now,
+          updated_at: now
+        })
+        .select()
+        .single();
+
+      if (insertError || !inserted) {
+        console.error('Supabase registration insert error:', insertError);
+      } else {
+        await supabaseAdmin.from('submission_audit_logs').insert({
+          registration_id: inserted.id,
+          actor: 'participant',
+          action: 'REGISTER_COMPLETED',
+          details: { code: registrationCode, phone: `***${normalizedPhone.slice(-4)}` }
+        });
+        return { success: true, registration: mapDbRegToModel(inserted) };
+      }
+    } catch (sbErr) {
+      console.error('Supabase error in createRegistration:', sbErr);
+    }
+  }
+
+  // --- LOCAL / FALLBACK ENGINE PATH ---
+  const db = readDb();
   const existingByPhone = db.registrations.find(r => r.normalizedPhone === normalizedPhone);
   if (existingByPhone) {
     return { 
       success: false, 
-      error: `A participant is already registered with mobile numberending in ...${normalizedPhone.slice(-4)}. Registration ID: ${existingByPhone.registrationCode}`,
+      error: `A participant is already registered with mobile number ending in ...${normalizedPhone.slice(-4)}. Registration ID: ${existingByPhone.registrationCode}`,
       registration: existingByPhone
     };
   }
@@ -231,7 +340,6 @@ export async function createRegistration(data: {
     };
   }
 
-  // Generate unique Registration Code: DR26-XXXXXX
   const randomSuffix = Math.floor(100000 + Math.random() * 900000);
   const registrationCode = `DR26-${randomSuffix}`;
   const accessToken = `tok_${Math.random().toString(36).substring(2, 15)}_${Date.now()}`;
@@ -256,7 +364,6 @@ export async function createRegistration(data: {
 
   db.registrations.unshift(newRegistration);
   
-  // Add audit log
   db.auditLogs.unshift({
     id: `log-${Date.now()}`,
     registrationId: newRegistration.id,
@@ -271,6 +378,30 @@ export async function createRegistration(data: {
 }
 
 export async function getRegistrations(): Promise<Registration[]> {
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: regs, error: regErr } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (!regErr && regs) {
+        const { data: subs } = await supabaseAdmin
+          .from('video_submissions')
+          .select('*');
+
+        const subsList = (subs || []).map(mapDbSubToModel);
+        return regs.map(r => {
+          const model = mapDbRegToModel(r);
+          model.submissions = subsList.filter(s => s.registrationId === r.id);
+          return model;
+        });
+      }
+    } catch (e) {
+      console.error('Supabase getRegistrations error:', e);
+    }
+  }
+
   const db = readDb();
   return db.registrations.map(r => {
     const subs = db.videoSubmissions.filter(s => s.registrationId === r.id);
@@ -279,22 +410,90 @@ export async function getRegistrations(): Promise<Registration[]> {
 }
 
 export async function getRegistrationByCode(code: string): Promise<Registration | null> {
+  const cleanCode = (code || '').trim().toUpperCase();
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: reg } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .eq('registration_code', cleanCode)
+        .maybeSingle();
+
+      if (reg) {
+        const model = mapDbRegToModel(reg);
+        const { data: subs } = await supabaseAdmin
+          .from('video_submissions')
+          .select('*')
+          .eq('registration_id', reg.id);
+        model.submissions = (subs || []).map(mapDbSubToModel);
+        return model;
+      }
+    } catch (e) {
+      console.error('Supabase getRegistrationByCode error:', e);
+    }
+  }
+
   const db = readDb();
-  const reg = db.registrations.find(r => r.registrationCode.toUpperCase() === code.trim().toUpperCase());
+  const reg = db.registrations.find(r => r.registrationCode.toUpperCase() === cleanCode);
   if (!reg) return null;
   const subs = db.videoSubmissions.filter(s => s.registrationId === reg.id);
   return { ...reg, submissions: subs };
 }
 
 export async function getRegistrationByToken(token: string): Promise<Registration | null> {
+  const cleanToken = (token || '').trim();
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: reg } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .eq('access_token', cleanToken)
+        .maybeSingle();
+
+      if (reg) {
+        const model = mapDbRegToModel(reg);
+        const { data: subs } = await supabaseAdmin
+          .from('video_submissions')
+          .select('*')
+          .eq('registration_id', reg.id);
+        model.submissions = (subs || []).map(mapDbSubToModel);
+        return model;
+      }
+    } catch (e) {
+      console.error('Supabase getRegistrationByToken error:', e);
+    }
+  }
+
   const db = readDb();
-  const reg = db.registrations.find(r => r.accessToken === token.trim());
+  const reg = db.registrations.find(r => r.accessToken === cleanToken);
   if (!reg) return null;
   const subs = db.videoSubmissions.filter(s => s.registrationId === reg.id);
   return { ...reg, submissions: subs };
 }
 
 export async function getRegistrationById(id: string): Promise<Registration | null> {
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: reg } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .eq('id', id)
+        .maybeSingle();
+
+      if (reg) {
+        const model = mapDbRegToModel(reg);
+        const { data: subs } = await supabaseAdmin
+          .from('video_submissions')
+          .select('*')
+          .eq('registration_id', reg.id);
+        model.submissions = (subs || []).map(mapDbSubToModel);
+        return model;
+      }
+    } catch (e) {
+      console.error('Supabase getRegistrationById error:', e);
+    }
+  }
+
   const db = readDb();
   const reg = db.registrations.find(r => r.id === id);
   if (!reg) return null;
@@ -303,9 +502,26 @@ export async function getRegistrationById(id: string): Promise<Registration | nu
 }
 
 export async function verifyParticipantAccess(code: string, phone: string): Promise<{ success: boolean; token?: string; error?: string }> {
-  const db = readDb();
-  const normalizedPhone = normalizePhoneNumber(phone);
   const cleanCode = (code || '').trim().toUpperCase();
+  const normalizedPhone = normalizePhoneNumber(phone);
+
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const { data: reg } = await supabaseAdmin
+        .from('registrations')
+        .select('*')
+        .eq('registration_code', cleanCode)
+        .maybeSingle();
+
+      if (reg && (reg.normalized_phone === normalizedPhone || reg.normalized_phone.endsWith(normalizedPhone))) {
+        return { success: true, token: reg.access_token };
+      }
+    } catch (e) {
+      console.error('Supabase verifyParticipantAccess error:', e);
+    }
+  }
+
+  const db = readDb();
   const reg = db.registrations.find(
     r => r.registrationCode.toUpperCase() === cleanCode && 
          (r.normalizedPhone === normalizedPhone || r.normalizedPhone.endsWith(normalizedPhone))
@@ -325,6 +541,30 @@ export async function updateRegistration(
   id: string, 
   updates: Partial<Registration>
 ): Promise<{ success: boolean; error?: string; registration?: Registration }> {
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const updatePayload: any = { updated_at: new Date().toISOString() };
+      if (updates.fullName) updatePayload.full_name = updates.fullName.trim();
+      if (updates.normalizedPhone) updatePayload.normalized_phone = normalizePhoneNumber(updates.normalizedPhone);
+      if (updates.email) updatePayload.email = updates.email.trim().toLowerCase();
+      if (updates.city) updatePayload.city = updates.city.trim();
+      if (updates.instagramUsername) updatePayload.instagram_username = normalizeInstagram(updates.instagramUsername);
+
+      const { data: updated, error } = await supabaseAdmin
+        .from('registrations')
+        .update(updatePayload)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (!error && updated) {
+        return { success: true, registration: mapDbRegToModel(updated) };
+      }
+    } catch (e) {
+      console.error('Supabase updateRegistration error:', e);
+    }
+  }
+
   const db = readDb();
   const index = db.registrations.findIndex(r => r.id === id);
   if (index < 0) {
@@ -334,13 +574,11 @@ export async function updateRegistration(
   const existing = db.registrations[index];
   const now = new Date().toISOString();
 
-  // If phone was changed, normalize it
   let normalizedPhone = existing.normalizedPhone;
   if (updates.normalizedPhone) {
     normalizedPhone = normalizePhoneNumber(updates.normalizedPhone);
   }
 
-  // If instagram was changed, normalize it
   let instagramUsername = existing.instagramUsername;
   if (updates.instagramUsername) {
     instagramUsername = normalizeInstagram(updates.instagramUsername);
@@ -362,6 +600,14 @@ export async function updateRegistration(
 }
 
 export async function deleteRegistration(id: string): Promise<{ success: boolean }> {
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      await supabaseAdmin.from('registrations').delete().eq('id', id);
+    } catch (e) {
+      console.error('Supabase deleteRegistration error:', e);
+    }
+  }
+
   const db = readDb();
   db.registrations = db.registrations.filter(r => r.id !== id);
   db.videoSubmissions = db.videoSubmissions.filter(s => s.registrationId !== id);
@@ -376,15 +622,71 @@ export async function saveVideoSubmission(
   videoType: 'main_story' | 'durgi_reel', 
   submittedUrl: string
 ): Promise<{ success: boolean; error?: string; submission?: VideoSubmission }> {
+  const normalized = normalizeInstagramReelUrl(submittedUrl);
+  if (!normalized || (!normalized.includes('/reel/') && !normalized.includes('/p/'))) {
+    return { success: false, error: 'Please enter a valid Instagram Reel URL (e.g., https://www.instagram.com/reel/...)' };
+  }
+
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      const now = new Date().toISOString();
+      const { data: existingSub } = await supabaseAdmin
+        .from('video_submissions')
+        .select('*')
+        .eq('registration_id', registrationId)
+        .eq('video_type', videoType)
+        .maybeSingle();
+
+      if (existingSub) {
+        const { data: updatedSub } = await supabaseAdmin
+          .from('video_submissions')
+          .update({
+            submitted_url: submittedUrl.trim(),
+            normalized_url: normalized,
+            status: 'submitted',
+            updated_at: now
+          })
+          .eq('id', existingSub.id)
+          .select()
+          .single();
+
+        if (updatedSub) {
+          return { success: true, submission: mapDbSubToModel(updatedSub) };
+        }
+      } else {
+        const { data: insertedSub } = await supabaseAdmin
+          .from('video_submissions')
+          .insert({
+            registration_id: registrationId,
+            video_type: videoType,
+            submitted_url: submittedUrl.trim(),
+            normalized_url: normalized,
+            status: 'submitted',
+            submitted_at: now,
+            updated_at: now
+          })
+          .select()
+          .single();
+
+        if (insertedSub) {
+          await supabaseAdmin.from('submission_audit_logs').insert({
+            registration_id: registrationId,
+            actor: 'participant',
+            action: `VIDEO_SUBMITTED_${videoType.toUpperCase()}`,
+            details: { url: normalized }
+          });
+          return { success: true, submission: mapDbSubToModel(insertedSub) };
+        }
+      }
+    } catch (e) {
+      console.error('Supabase saveVideoSubmission error:', e);
+    }
+  }
+
   const db = readDb();
   const reg = db.registrations.find(r => r.id === registrationId);
   if (!reg) {
     return { success: false, error: 'Registration record not found.' };
-  }
-
-  const normalized = normalizeInstagramReelUrl(submittedUrl);
-  if (!normalized || (!normalized.includes('/reel/') && !normalized.includes('/p/'))) {
-    return { success: false, error: 'Please enter a valid Instagram Reel URL (e.g., https://www.instagram.com/reel/...)' };
   }
 
   const now = new Date().toISOString();
@@ -417,13 +719,11 @@ export async function saveVideoSubmission(
     db.videoSubmissions.push(sub);
   }
 
-  // Update registration updated_at
   const regIndex = db.registrations.findIndex(r => r.id === registrationId);
   if (regIndex >= 0) {
     db.registrations[regIndex].updatedAt = now;
   }
 
-  // Audit log
   db.auditLogs.unshift({
     id: `log-${Date.now()}`,
     registrationId,
@@ -443,9 +743,26 @@ export async function updateSubmissionReview(
   reviewNotes?: string,
   reviewedBy: string = 'Admin'
 ): Promise<{ success: boolean; error?: string }> {
+  if (isSupabaseConfigured && supabaseAdmin) {
+    try {
+      await supabaseAdmin
+        .from('video_submissions')
+        .update({
+          status,
+          review_notes: reviewNotes || null,
+          reviewed_by: reviewedBy,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', submissionId);
+      return { success: true };
+    } catch (e) {
+      console.error('Supabase updateSubmissionReview error:', e);
+    }
+  }
+
   const db = readDb();
   const subIndex = db.videoSubmissions.findIndex(s => s.id === submissionId);
-  if (subIndex === 0 && !db.videoSubmissions[subIndex]) {
+  if (subIndex === -1 && !db.videoSubmissions[subIndex]) {
     return { success: false, error: 'Submission not found' };
   }
   if (subIndex < 0) {
